@@ -1,31 +1,31 @@
 "use client";
 
-import { gql } from "@apollo/client";
+import { gql, TypedDocumentNode } from "@apollo/client";
 import { useQuery } from "@apollo/client/react";
+
 import parse from "html-react-parser";
 import { CardAllCourses } from "@/components/myComponents/CardAllCourses/page";
 
-interface FeaturedImageNode {
-  link: string;
-}
-
-interface FeaturedImage {
-  node: FeaturedImageNode;
-}
-
-interface Post {
-  title: string;
-  excerpt: string;
-  featuredImage: FeaturedImage | null;
-}
-
-interface PostsData {
+type GetCoursesInventoryQuery = {
   posts: {
-    nodes: Post[];
+    nodes: Array<{
+      title: string;
+      excerpt: string;
+      featuredImage: {
+        node: {
+          link: string | null;
+        };
+      };
+    }>;
   };
-}
+};
 
-const postsQuery = gql`
+type GetCoursesInventoryQueryVariables = Record<string, never>;
+
+const coursesQuery: TypedDocumentNode<
+  GetCoursesInventoryQuery,
+  GetCoursesInventoryQueryVariables
+> = gql`
   query Posts {
     posts {
       nodes {
@@ -43,7 +43,7 @@ const postsQuery = gql`
 `;
 
 export default function Cursos() {
-  const { loading, error, data } = useQuery<PostsData>(postsQuery);
+  const { loading, error, data } = useQuery(coursesQuery);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -51,13 +51,13 @@ export default function Cursos() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {data.posts.nodes.map((post: Post) => (
+      {data.posts.nodes.map((course) => (
         <CardAllCourses
-          key={post.title}
-          imageSrc={post.featuredImage?.node?.link ||""}
-          imageAlt={post.title}
-          title={post.title}
-          description={parse(post.excerpt)}
+          key={course.title}
+          imageSrc={course.featuredImage?.node?.link || ""}
+          imageAlt={course.title}
+          title={course.title}
+          description={parse(course.excerpt)}
           buttonText="Ver curso"
         />
       ))}
