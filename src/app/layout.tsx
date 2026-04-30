@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, JetBrains_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 
 import Providers from "./providers";
+import Dashboard from "@/components/myComponents/Dashboard/page";
+import { cn } from "@/lib/utils";
+
+const dmSansHeading = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,10 +39,20 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-mono",
+        jetbrainsMono.variable,
+        dmSansHeading.variable,
+      )}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Dashboard>
+          <Providers>{children}</Providers>
+        </Dashboard>
       </body>
     </html>
   );
