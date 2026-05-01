@@ -16,7 +16,7 @@ interface CardAllCoursesProps {
   title: string;
   description: string | React.ReactNode;
   buttonText: string;
-  onButtonClick?: () => void;
+  link: string;
 }
 
 export function CardAllCourses({
@@ -26,7 +26,7 @@ export function CardAllCourses({
   title,
   description,
   buttonText,
-  onButtonClick,
+  link,
 }: CardAllCoursesProps) {
   return (
     <Card className="relative mx-auto w-full max-w-sm pt-0">
@@ -52,7 +52,10 @@ export function CardAllCourses({
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardFooter>
-        <Button className="w-full" onClick={onButtonClick}>
+        <Button
+          className="w-full cursor-pointer"
+          onClick={() => (window.location.href = link)}
+        >
           {buttonText}
         </Button>
       </CardFooter>

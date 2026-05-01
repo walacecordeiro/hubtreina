@@ -16,6 +16,7 @@ type GetCoursesInventoryQuery = {
           link: string | null;
         };
       };
+      slug: string;
     }>;
   };
 };
@@ -37,6 +38,7 @@ const coursesQuery: TypedDocumentNode<
             link
           }
         }
+        slug
       }
     }
   }
@@ -59,6 +61,7 @@ export default function Cursos() {
           title={course.title}
           description={parse(course.excerpt)}
           buttonText="Ver curso"
+          link={`/cursos/${course.slug}`}
         />
       ))}
     </div>
