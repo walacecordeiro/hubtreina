@@ -4,17 +4,52 @@
 
 @custom-variant dark (&:is(.dark *));
 
-.teste {
-  background-color: red;
+.contentHeadless {
+  /* Estilo global do content */
   p {
-    color: white;
+    @apply mb-3 text-sm text-muted-foreground;
   }
 
-  .wp-block-button {
-    width: fit-content;
-    margin: 0 auto;
-    background-color: blue;
-    color: white;
+  h2 {
+    @apply font-semibold tracking-tight my-3;
+  }
+
+  img {
+    @apply rounded-md m-auto w-full;
+  }
+
+  ul {
+    @apply my-3 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  blockquote {
+    @apply border-l-2 pl-4 my-3 border-muted;
+  }
+
+  .wp-block-button__link {
+    @apply w-full my-3 bg-emerald-400 text-primary-foreground inline-flex items-center justify-center rounded-md px-4 py-2 hover:scale-[1.02] transition-transform;
+  }
+
+  .wp-block-embed__wrapper {
+    @apply my-3;
+
+    iframe {
+      @apply w-full h-full aspect-video rounded-md;
+    }
+  }
+
+  /* Sessão de duas colunas */
+
+  .twoColumns {
+    p {
+      @apply mb-0;
+    }
+
+    @apply my-3 lg:my-12 flex flex-col-reverse lg:flex-row gap-4 items-center justify-center;
+
+    .wp-block-column {
+      @apply w-full lg:w-1/2;
+    }
   }
 }
 

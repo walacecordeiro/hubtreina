@@ -30,7 +30,7 @@ export default function CursoPage() {
   const slug = params.slug as string;
 
   const { loading, error, data } = useQuery(courseQuery, {
-    variables: { slug },    
+    variables: { slug },
   });
 
   if (loading) return <p>Carregando...</p>;
@@ -40,9 +40,9 @@ export default function CursoPage() {
   const post = data.posts.nodes[0];
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <div>{parse(post.content)}</div>
+    <div className="container mx-auto lg:w-[80%]">
+      <h1 className="mb-4 text-lg md:text-2xl">{post.title}</h1>
+      <div className="contentHeadless">{parse(post.content)}</div>
     </div>
   );
 }
