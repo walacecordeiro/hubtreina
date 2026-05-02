@@ -23,7 +23,7 @@ export function SidebarOptInForm() {
         <form>
           <div className="grid gap-2.5">
             <SidebarInput type="email" placeholder="Email" />
-            <Button className="w-full bg-sidebar-primary text-sidebar-primary-foreground shadow-none">
+            <Button variant="default" className="w-full bg-sidebar-primary text-sidebar-primary-foreground shadow-none">
               Inscrever-se
             </Button>
           </div>

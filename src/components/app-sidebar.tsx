@@ -43,24 +43,24 @@ const data = {
         },
         {
           title: "Programação",
-          url: "#",
+          url: "/cursos/categoria/programacao",
           isActive: true,
         },
         {
           title: "Design",
-          url: "#",
+          url: "/cursos/categoria/design",
         },
         {
-          title: "Marketing digital",
-          url: "#",
+          title: "Marketing",
+          url: "/cursos/categoria/marketing",
         },
         {
           title: "Fotografia",
-          url: "#",
+          url: "/cursos/categoria/fotografia",
         },
         {
           title: "Idiomas",
-          url: "#",
+          url: "/cursos/categoria/idiomas",
         },
       ],
     },

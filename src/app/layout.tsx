@@ -49,9 +49,9 @@ export default async function RootLayout({
         dmSansHeading.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col dark">
         <Dashboard>
-          <Providers>{children}</Providers>
+            <Providers>{children}</Providers>
         </Dashboard>
       </body>
     </html>
